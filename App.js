@@ -16,7 +16,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Drawer.Navigator>
-        <Drawer.Screen name="ThoughtBook" component={HomeScreen} options={{drawerLabel:"Home"}} />
+        <Drawer.Screen name="ThoughtBook"  component={HomeScreen} options={{drawerLabel:"Home"}} />
         {true && <Drawer.Screen name="Login" component={LoginScreen} />}
         <Drawer.Screen name="Sign Up" component={SignUpScreen} />
         <Drawer.Screen name="Add Thought" component={AddThoughtScreen} />

@@ -1,6 +1,5 @@
-import { StyleSheet, useWindowDimensions } from "react-native"
+import { StyleSheet } from "react-native"
 import { Colors } from "./Colors"
-
 
 export const GlobalStyles = StyleSheet.create({
     screen: {

@@ -7,18 +7,21 @@ import { userLoginHandler } from '../utils/NetworkCalls/UserAPI'
 import { useDispatch} from 'react-redux'
 import { requestUserLogin, userLoginFail, userLoginSuccess } from '../redux/Authentication/authActions'
 
-const LoginScreen = () => {
+const LoginScreen = ({navigation}) => {
   const dispatch = useDispatch()
   const handleLogin = (username, password) => {
-    console.log("login started");
     dispatch(requestUserLogin());
-    userLoginHandler(username, password).then(res => {dispatch(userLoginSuccess(res.data.token));console.log(res);}).catch(err => { console.log(err); dispatch(userLoginFail()) })
-
+    userLoginHandler(username, password).then(res => {dispatch(userLoginSuccess(res.data.token));}).catch(err => { console.log(err); dispatch(userLoginFail()) })
   }
+
+  const goToHome=()=>{
+    navigation.jumpTo("ThoughtBook");
+  }
+
   return (
     <SafeAreaView style={GlobalStyles.screen}>
       <ScrollView>
-        <LoginCard loginHandler={handleLogin} />
+        <LoginCard loginHandler={handleLogin} goToHome={goToHome} />
       </ScrollView>
     </SafeAreaView>
   )

@@ -35,6 +35,7 @@ export default function LoginCard(props) {
         if (isAuthenticated) {
             setPassword("");
             setUsername("");
+            props.goToHome();
         }
     }, [errorMsg, isAuthenticated])
 

@@ -5,5 +5,7 @@ export const Colors = {
     "line-color": "#d4d4d8",
     "brand-color":"#e11d48",
     "button-color-primary":"#e11d48",
-    "brand-color-secondary":"#3b82f6"
+    "brand-color-secondary":"#3b82f6",
+    "brand-color-opacity":"#fee2e2",
+
 }

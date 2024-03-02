@@ -1,7 +1,7 @@
 import { View, Text } from 'react-native';
 import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { GlobalStyles } from '../Theme/GlobalStyles';
+import { GlobalStyles } from '../theme/GlobalStyles';
 import EditThoughtList from '../components/EditThoughtList/EditThoughtList';
 import { useSelector } from 'react-redux';
 

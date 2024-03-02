@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { Colors } from "../../Theme/Colors";
+import { Colors } from "../../theme/Colors";
 
 export const HomeListStyles = StyleSheet.create({
     text: {
@@ -13,5 +13,17 @@ export const HomeListStyles = StyleSheet.create({
     horizonatalRule: {
         height: 1,
         backgroundColor: Colors["line-color"]
-    }
+    },
+    header:{
+        marginTop:20,
+        marginBottom:20,
+        flexDirection:"row",
+        alignItems:"center",
+        justifyContent:"center",
+        gap:5
+    },
+    headerText:{
+        color:Colors["brand-color"],
+        fontWeight:"bold"
+    },
 });

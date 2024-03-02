@@ -1,7 +1,7 @@
 import { View, Text, TextInput, Button } from 'react-native'
 import React from 'react'
-import { Colors } from '../../Theme/Colors'
-import { GlobalStyles } from '../../Theme/GlobalStyles'
+import { Colors } from '../../theme/Colors'
+import { GlobalStyles } from '../../theme/GlobalStyles'
 
 export default function SignUpCard() {
   return (

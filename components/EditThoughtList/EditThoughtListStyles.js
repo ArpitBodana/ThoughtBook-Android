@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { Colors } from "../../Theme/Colors";
+import { Colors } from "../../theme/Colors";
 
 export const EditThoughtListStyles = StyleSheet.create({
     text: {

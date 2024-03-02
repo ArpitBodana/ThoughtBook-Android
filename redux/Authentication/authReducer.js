@@ -1,11 +1,12 @@
-import { REQUEST_USER_LOGIN, USER_LOGIN_FAIL, USER_LOGIN_SUCCESS } from "./authTypes"
+import { LOG_ME_OUT, REQUEST_USER_LOGIN, USER_LOGIN_FAIL, USER_LOGIN_SUCCESS } from "./authTypes"
 
 
 const initialAuthState = {
     isAuthenticated: false,
     authToken: "",
     loading: false,
-    errorMsg:""
+    errorMsg:"",
+    userName:"",
 }
 
  const authReducer = (state = initialAuthState, action) => {
@@ -26,8 +27,15 @@ const initialAuthState = {
             ...state,
             loading: false,
             isAuthenticated: true,
-            authToken: action.payload,
-            errorMsg:""
+            authToken: action.payload.token,
+            errorMsg:"",
+            userName:action.payload.user
+        }
+        case LOG_ME_OUT:return{
+            ...state,
+            isAuthenticated:false,
+            authToken:"",
+            userName:""
         }
         default: return state
     }

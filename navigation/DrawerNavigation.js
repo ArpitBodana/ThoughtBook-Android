@@ -5,26 +5,28 @@ import SignUpScreen from '../screens/SignUpScreen';
 import AddThoughtScreen from '../screens/AddThoughtScreen';
 import EditThoughtScreen from '../screens/EditThoughtScreen';
 import ChangePasswordScreen from '../screens/ChangePasswordScreen';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import CustomeDrawer from '../components/CustomeDrawer/CustomeDrawer';
 import { Ionicons, MaterialIcons } from 'react-native-vector-icons'
-import { Colors } from '../Theme/Colors';
+import { Colors } from '../theme/Colors';
+
 
 
 
 export default function DrawerNavigation() {
-    const Drawer = createDrawerNavigator()
-    const { isAuthenticated } = useSelector(state => state.auth)
+    const Drawer = createDrawerNavigator();
+    const { isAuthenticated } = useSelector(state => state.auth);
+   
     return (
-        <Drawer.Navigator screenOptions={{ 
-            headerShown:false,
-            drawerActiveBackgroundColor:Colors['brand-color-opacity'],
-            drawerActiveTintColor:Colors['brand-color'],
-            drawerInactiveBackgroundColor:Colors['bg-color-primary'],
-            drawerLabelStyle:{
-                marginLeft:-20
+        <Drawer.Navigator screenOptions={{
+            headerShown: false,
+            drawerActiveBackgroundColor: Colors['brand-color-opacity'],
+            drawerActiveTintColor: Colors['brand-color'],
+            drawerInactiveBackgroundColor: Colors['bg-color-primary'],
+            drawerLabelStyle: {
+                marginLeft: -20
             }
-        }} drawerContent={props => <CustomeDrawer {...props}  />}>
+        }} drawerContent={props => <CustomeDrawer {...props} />}>
             <Drawer.Screen name="ThoughtBook" component={HomeScreen} options={{
                 drawerLabel: "Home", drawerIcon: ({ color }) => (
                     <Ionicons name="home-outline" size={22} color={color} />

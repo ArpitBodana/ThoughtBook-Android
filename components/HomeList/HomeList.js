@@ -1,14 +1,23 @@
 import { View, Text, FlatList } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import { HomeListStyles } from './HomeListStyles'
-import { GlobalStyles } from '../../Theme/GlobalStyles'
-const HomeList = ({ data }) => {
+import { GlobalStyles } from '../../theme/GlobalStyles'
+import HomeListHeader from './HomeListHeader'
+import Footer from '../Footer/Footer'
+import Nothing from '../Nothing/Nothing'
+const HomeList = ({ data ,onRefreshHandler}) => {
 
     // console.log('working...........HOMELIST ',data);
+    const [refreshing, setRefreshing]=useState(false);
+    const refreshList=()=>{
+        setRefreshing(true);
+        onRefreshHandler();
+        setRefreshing(false);
+    }
     return (
         <FlatList
             style={HomeListStyles.flatList}
-            data={data}
+            data={data.reverse()}
             renderItem={({ item }) => {
                 //console.log(item);
                 return (
@@ -28,9 +37,11 @@ const HomeList = ({ data }) => {
             }}
             keyExtractor={(item) => item.id.toString()}
             ItemSeparatorComponent={<View style={{ height: 16 }}></View>}
-            ListEmptyComponent={<Text>No Data For Showcase!!</Text>}
-            ListHeaderComponent={<Text style={{ marginBottom: 30 }}>Available Thoughts</Text>}
-            ListFooterComponent={<Text style={{ marginTop: 30 }}>Belongs to Arpit Bodana</Text>}
+            ListEmptyComponent={<Nothing/>}
+            ListHeaderComponent={<HomeListHeader/>}
+            ListFooterComponent={<Footer/>}
+            refreshing={refreshing}
+            onRefresh={()=>refreshList()}
         />
     )
 }

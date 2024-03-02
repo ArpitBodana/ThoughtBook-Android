@@ -40,7 +40,8 @@ export const GlobalStyles = StyleSheet.create({
         fontSize: 20,
         fontWeight: "bold",
         color: Colors["brand-color"],
-        marginBottom: 10
+        marginBottom: 10,
+        marginTop:20,
     },
     input: {
         borderColor: Colors["brand-color"],

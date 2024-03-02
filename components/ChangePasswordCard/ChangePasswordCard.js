@@ -1,7 +1,7 @@
 import { View, Text, Button } from 'react-native'
 import React from 'react'
-import { GlobalStyles } from '../../Theme/GlobalStyles'
-import { Colors } from '../../Theme/Colors'
+import { GlobalStyles } from '../../theme/GlobalStyles'
+import { Colors } from '../../theme/Colors'
 import { TextInput } from 'react-native-gesture-handler'
 
 export default function ChangePasswordCard() {

@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { Colors } from "../../Theme/Colors";
+import { Colors } from "../../theme/Colors";
 
 
 export const CustomeDrawerStyles = StyleSheet.create({
@@ -24,5 +24,16 @@ export const CustomeDrawerStyles = StyleSheet.create({
     appVersion:{
         color:Colors["button-color-primary"],
         fontWeight:"bold"
+    },
+    logoutBtn:{
+        backgroundColor:Colors["brand-color-secondary"],
+        justifyContent:"center",
+        alignItems:"center",
+        height:40,
+        flexDirection:"row",
+        gap:10
+    },
+    logoutBtnText:{
+        color:Colors["card-background"]
     }
 })

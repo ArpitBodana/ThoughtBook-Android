@@ -1,17 +1,16 @@
 import { View, Text, Button, ToastAndroid } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { TextInput } from 'react-native-gesture-handler'
-import { Colors } from '../../Theme/Colors'
-import { GlobalStyles } from '../../Theme/GlobalStyles'
+import { Colors } from '../../theme/Colors'
+import { GlobalStyles } from '../../theme/GlobalStyles'
 import { useSelector } from 'react-redux'
+import { showToast } from '../../utils/Toast'
 
 export default function LoginCard(props) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
-    const showToast = (message) => {
-        ToastAndroid.show(message, ToastAndroid.SHORT);
-    }
+    
     const { isAuthenticated, authToken, loading, errorMsg } = useSelector(state => state.auth)
     const login = () => {
         if (username != "" && password != "") {

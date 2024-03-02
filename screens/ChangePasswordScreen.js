@@ -1,5 +1,5 @@
 import React from 'react'
-import { GlobalStyles } from '../Theme/GlobalStyles'
+import { GlobalStyles } from '../theme/GlobalStyles'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import ChangePasswordCard from '../components/ChangePasswordCard/ChangePasswordCard'
 import { ScrollView } from 'react-native'

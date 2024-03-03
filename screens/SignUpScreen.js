@@ -8,9 +8,9 @@ import { ScrollView } from 'react-native'
 export default function SignUpScreen() {
     return (
         <SafeAreaView style={GlobalStyles.screen}>
-            <ScrollView>
+            <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}>
                 <SignUpCard />
             </ScrollView>
-        </SafeAreaView>
+        </SafeAreaView >
     )
 }

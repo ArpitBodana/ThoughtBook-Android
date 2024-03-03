@@ -1,21 +1,68 @@
-import { View, Text } from 'react-native';
-import React from 'react';
+import { View, Text, Modal, Pressable } from 'react-native';
+import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { GlobalStyles } from '../theme/GlobalStyles';
 import EditThoughtList from '../components/EditThoughtList/EditThoughtList';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import Loading from '../components/Loading/Loading';
+import { deleteThought, getAllThoughts } from '../utils/NetworkCalls/ThoughtsAPI';
+import { fetchThoughtFail, fetchThoughtSuccess, fetchThoughts } from '../redux/Thought/thoughtActions';
 
 
 
 export default function EditThoughtScreen() {
 
-  const { loading, thoughts } = useSelector(state => state.thoughts)
+  const { loading, thoughts } = useSelector(state => state.thoughts);
+  const { authToken } = useSelector(state => state.auth)
+  const [modalVisible, setModalVisible] = useState(false);
+  const [delId, setDelId] = useState("");
+  const dispatch = useDispatch();
+
+  const showModal = (id) => {
+    setModalVisible(true)
+    setDelId(id);
+
+  }
+
+  const onDelete = (id, token) => {
+    //console.log(id,token);
+    deleteThought(id, token).then(res => {
+      dispatch(fetchThoughts());
+      getAllThoughts().then(res => { dispatch(fetchThoughtSuccess(res.data)); }).catch(err => { console.log(err); dispatch(fetchThoughtFail(err.message)) });
+    })
+    setModalVisible(false);
+  }
 
   return (
     <SafeAreaView style={GlobalStyles.screen}>
       <View >
+        <Modal animationType="slide"
+          transparent={true}
+          visible={modalVisible}
+          onRequestClose={() => {
+            setModalVisible(false)
+          }}
+        >
+          <View style={GlobalStyles.popUpContainer}>
+            <View style={GlobalStyles.modalView}>
+              <Text style={GlobalStyles.modalText}>Are you sure ? You want to delete this thought?</Text>
+              <View style={GlobalStyles.modalBottom}>
+                <Pressable
+                  style={[GlobalStyles.button, GlobalStyles.buttonClose]}
+                  onPress={() => onDelete(delId, authToken)}>
+                  <Text style={GlobalStyles.textStyle}>Yes</Text>
+                </Pressable>
+                <Pressable
+                  style={[GlobalStyles.button, GlobalStyles.buttonOpen]}
+                  onPress={() => setModalVisible(!modalVisible)}>
+                  <Text style={GlobalStyles.textStyle}>No</Text>
+                </Pressable>
+              </View>
+            </View>
+          </View>
+        </Modal>
         <Text style={GlobalStyles.brandText}>Bring Change To Your Thoughts</Text>
-        {loading ? <Text>Loading ...... </Text> : <EditThoughtList data={thoughts} />}
+        {loading ? <Loading /> : <EditThoughtList data={thoughts} modalHandler={showModal} />}
       </View>
     </SafeAreaView>
   )

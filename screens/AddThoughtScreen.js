@@ -16,11 +16,12 @@ export default function AddThoughtScreen() {
       showToast("Please fill all fields.")
       return false
     }
-    return addThought(thought, author, user, token).then(res => { showToast("Thought Spreaded"); resetFields() }).catch(err => {showToast("Something went wrong. Please try after some time.");console.log(err);});
+    return addThought(thought, author, user, token).then(res => { showToast("Thought Spreaded"); resetFields() }).catch(err => { showToast("Something went wrong. Please try after some time."); console.log(err); });
   }
+
   return (
     <SafeAreaView style={GlobalStyles.screen}>
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}>
         <AddThoughtCard handleSave={handleSave} />
       </ScrollView>
     </SafeAreaView>

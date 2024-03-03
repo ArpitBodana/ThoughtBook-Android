@@ -20,7 +20,7 @@ const LoginScreen = ({ navigation }) => {
 
   return (
     <SafeAreaView style={GlobalStyles.screen}>
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}>
         <LoginCard loginHandler={handleLogin} goToHome={goToHome} />
       </ScrollView>
     </SafeAreaView>

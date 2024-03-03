@@ -27,7 +27,7 @@ const CustomeDrawer = (props) => {
             <View>
                 {isAuthenticated && <TouchableOpacity onPress={()=>handleLogout()}>
                     <View style={CustomeDrawerStyles.logoutBtn}>
-                        <MaterialIcons name="logout" size={22} color={Colors['card-background']} />
+                        <MaterialIcons name="logout" size={22} color={Colors['brand-color']} />
                         <Text style={CustomeDrawerStyles.logoutBtnText}>Logout</Text>
                     </View></TouchableOpacity>}
             </View>

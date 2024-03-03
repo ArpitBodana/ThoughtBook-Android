@@ -18,6 +18,7 @@ const HomeList = ({ data ,onRefreshHandler}) => {
         <FlatList
             style={HomeListStyles.flatList}
             data={data.reverse()}
+            showsVerticalScrollIndicator={false}
             renderItem={({ item }) => {
                 //console.log(item);
                 return (
@@ -31,7 +32,6 @@ const HomeList = ({ data ,onRefreshHandler}) => {
                             <Text style={HomeListStyles.text}>{item.date}</Text>
                             <Text style={[HomeListStyles.text, { fontWeight: "bold" }]}>{item.user}</Text>
                         </View>
-
                     </View>
                 )
             }}

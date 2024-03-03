@@ -2,17 +2,42 @@ import { Button, FlatList, Text, TextInput, View } from "react-native";
 import { EditThoughtListStyles } from "./EditThoughtListStyles";
 import { GlobalStyles } from "../../theme/GlobalStyles";
 import { Colors } from "../../theme/Colors";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Nothing from "../Nothing/Nothing";
-import Footer from "../Footer/Footer";
+import { useState } from "react";
+import { showToast } from "../../utils/Toast";
+import { editThought, getAllThoughts } from "../../utils/NetworkCalls/ThoughtsAPI";
+import { fetchThoughtFail, fetchThoughtSuccess, fetchThoughts } from "../../redux/Thought/thoughtActions";
 
-export default function EditThoughtList({ data }) {
+
+export default function EditThoughtList({ data, modalHandler }) {
     //console.log("edit thought list .......", data);
-    let { userName } = useSelector(state => state.auth)
+    let { userName, authToken } = useSelector(state => state.auth)
     let filteredData = data.filter(item => item.user == userName)
+    const [mthought, setThought] = useState("");
+    const [mauthor, setAuthor] = useState("");
+    const dispatch = useDispatch();
+
+    const handleEdit = (id, thought, author, userName, authToken) => {
+        if (mthought == "" && mauthor == "") {
+            showToast("Nothing is changed to save");
+            return
+        }
+        else {
+            editThought(id, thought, author, userName, authToken).then(res => {
+                dispatch(fetchThoughts());
+                getAllThoughts().then(res => { dispatch(fetchThoughtSuccess(res.data)); }).catch(err => { console.log(err); dispatch(fetchThoughtFail(err.message)) });
+            }).catch(err => {
+                console.log(err);
+                showToast("Something went wrong please try after some time.")
+            })
+        }
+    }
+
     return (
         <FlatList
             style={EditThoughtListStyles.flatList}
+            showsVerticalScrollIndicator={false}
             data={filteredData}
             renderItem={({ item }) => {
                 return (
@@ -20,20 +45,20 @@ export default function EditThoughtList({ data }) {
                         <Text style={EditThoughtListStyles.text}>{item.id}</Text>
                         <View style={EditThoughtListStyles.horizonatalRule}></View>
                         <Text style={EditThoughtListStyles.text}>Thought</Text>
-                        <TextInput defaultValue={item.thought} style={GlobalStyles.input} multiline />
+                        <TextInput defaultValue={item.thought} onChangeText={setThought} style={[GlobalStyles.input, { textAlign: "center" }]} multiline />
                         <Text style={EditThoughtListStyles.text}>Author</Text>
-                        <TextInput defaultValue={item.author} style={[GlobalStyles.input, { textAlign: "center" }]} multiline />
+                        <TextInput defaultValue={item.author} onChangeText={setAuthor} style={[GlobalStyles.input, { textAlign: "center" }]} multiline />
                         <View style={EditThoughtListStyles.horizonatalRule}></View>
                         <View style={[EditThoughtListStyles.bottomBtn]}>
-                            <Button title="Delete" color={Colors["brand-color-secondary"]} />
-                            <Button title="Save" color={Colors["button-color-primary"]} />
+                            <Button title="Delete" color={Colors["brand-color-secondary"]} onPress={() => modalHandler(item.id)} />
+                            <Button title="Save" color={Colors["button-color-primary"]} onPress={() => handleEdit(item.id, mthought == "" ? item.thought : mthought, mauthor == "" ? item.author : mauthor, userName, authToken)} />
                         </View>
                     </View>
                 )
             }}
             keyExtractor={(item) => item.id.toString()}
             ItemSeparatorComponent={<View style={{ height: 16 }}></View>}
-            ListEmptyComponent={<Nothing/>}
+            ListEmptyComponent={<Nothing />}
         />
     )
 }

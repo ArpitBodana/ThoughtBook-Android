@@ -9,12 +9,12 @@ export default function AddThoughtCard({ handleSave }) {
     const [thought, setThought] = useState("");
     const [author, setAuthor] = useState("");
 
-    const resetFields=()=>{
+    const resetFields = () => {
         setAuthor("");
         setThought("");
     }
     const handlePress = () => {
-        handleSave(thought, author, userName, authToken,resetFields);
+        handleSave(thought, author, userName, authToken, resetFields);
     }
     return (
         <View style={GlobalStyles.container}>
@@ -23,9 +23,9 @@ export default function AddThoughtCard({ handleSave }) {
                 <View style={GlobalStyles.horizonatalRule}></View>
                 <View style={GlobalStyles.formControls}>
                     <Text style={GlobalStyles.formText}>Thought</Text>
-                    <TextInput style={GlobalStyles.input} multiline value={thought} onChangeText={setThought} />
+                    <TextInput style={[GlobalStyles.input, { textAlign: "center" }]} multiline value={thought} onChangeText={setThought} />
                     <Text style={GlobalStyles.formText} >Author</Text>
-                    <TextInput style={GlobalStyles.input} value={author} onChangeText={setAuthor} />
+                    <TextInput style={[GlobalStyles.input, { textAlign: "center" }]} value={author} onChangeText={setAuthor} />
                 </View>
                 <View style={GlobalStyles.horizonatalRule}></View>
                 <Button title='Add My Thought' color={Colors['button-color-primary']} onPress={handlePress} />

@@ -15,8 +15,6 @@ export const CustomeDrawerStyles = StyleSheet.create({
         borderBottomWidth:0.2,
         borderBottomColor:Colors["brand-color"],
         backgroundColor:Colors["card-background"],
-        borderTopEndRadius:30,
-        borderRadius:20,
         margin:8,
         elevation:20
     },

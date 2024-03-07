@@ -6,7 +6,7 @@ import { getAllThoughts } from '../utils/NetworkCalls/ThoughtsAPI'
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchThoughtFail, fetchThoughtSuccess, fetchThoughts } from '../redux/Thought/thoughtActions'
 import Loading from '../components/Loading/Loading'
-
+import {AsyncStorage} from 'react-native';
 
 
 export default function HomeScreen() {
@@ -15,8 +15,12 @@ export default function HomeScreen() {
 
     const fetchThoughtsData = () => {
         dispatch(fetchThoughts());
-        getAllThoughts().then(res => { dispatch(fetchThoughtSuccess(res.data)); }).catch(err => { console.log(err); dispatch(fetchThoughtFail(err.message)) });
-      
+        getAllThoughts().then(res => { 
+            saveThoughtsLocal(res.data);
+            dispatch(fetchThoughtSuccess(res.data)); 
+        }).catch(err => { console.log("mnb",err); 
+           dispatch(fetchThoughtFail(err.message));
+         });
     }
 
     useEffect(() => {

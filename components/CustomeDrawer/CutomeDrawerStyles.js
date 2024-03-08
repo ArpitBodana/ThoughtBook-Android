@@ -20,7 +20,7 @@ export const CustomeDrawerStyles = StyleSheet.create({
     brandText:{
         color:Colors["brand-color"],
         textAlign:"center",
-        fontSize:35,
+        fontSize:25,
     },
     appVersion:{
         color:Colors["brand-color"],

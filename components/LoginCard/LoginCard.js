@@ -5,8 +5,17 @@ import { Colors } from '../../theme/Colors'
 import { GlobalStyles } from '../../theme/GlobalStyles'
 import { useSelector } from 'react-redux'
 import { showToast } from '../../utils/Toast'
+import { Poppins_200ExtraLight, Poppins_400Regular, Poppins_500Medium, Poppins_600SemiBold } from "@expo-google-fonts/poppins"
+import { useFonts } from "expo-font";
 
 export default function LoginCard(props) {
+    const [fontsLoaded] = useFonts({
+        Poppins_200ExtraLight,
+        Poppins_400Regular,
+        Poppins_500Medium,
+        Poppins_600SemiBold
+    
+      });
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
@@ -41,13 +50,13 @@ export default function LoginCard(props) {
     return (
         <View style={GlobalStyles.container}>
             <View style={[GlobalStyles.card, GlobalStyles.innerCard]}>
-                <Text style={GlobalStyles.brandText}>Login</Text>
+                <Text style={[GlobalStyles.brandText,{ fontWeight:"100", fontFamily: "Poppins_500Medium" }]}>Login</Text>
                 <View style={GlobalStyles.horizonatalRule}></View>
                 <View style={GlobalStyles.formControls}>
-                    <Text style={GlobalStyles.formText}>UserName</Text>
-                    <TextInput style={GlobalStyles.input} value={username} onChangeText={setUsername} />
-                    <Text style={GlobalStyles.formText} >Password</Text>
-                    <TextInput style={GlobalStyles.input} value={password} onChangeText={setPassword} secureTextEntry />
+                    <Text style={[GlobalStyles.formText,{ fontFamily: "Poppins_400Regular" }]}>UserName</Text>
+                    <TextInput style={[GlobalStyles.input, { textAlign: "center" ,fontFamily: "Poppins_400Regular"}]} value={username} onChangeText={setUsername} />
+                    <Text style={[GlobalStyles.formText,{ fontFamily: "Poppins_400Regular" }]} >Password</Text>
+                    <TextInput style={[GlobalStyles.input, { textAlign: "center" ,fontFamily: "Poppins_400Regular"}]} value={password} onChangeText={setPassword} secureTextEntry />
                 </View>
                 <View style={GlobalStyles.horizonatalRule}></View>
                 <Button title='Login' color={Colors['button-color-primary']} onPress={() => login()} />

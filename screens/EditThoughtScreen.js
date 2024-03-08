@@ -7,10 +7,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import Loading from '../components/Loading/Loading';
 import { deleteThought, getAllThoughts } from '../utils/NetworkCalls/ThoughtsAPI';
 import { fetchThoughtFail, fetchThoughtSuccess, fetchThoughts } from '../redux/Thought/thoughtActions';
-
+import { Poppins_200ExtraLight, Poppins_400Regular, Poppins_500Medium, Poppins_600SemiBold } from "@expo-google-fonts/poppins"
+import { useFonts } from "expo-font";
 
 
 export default function EditThoughtScreen() {
+  const [fontsLoaded] = useFonts({
+    Poppins_200ExtraLight,
+    Poppins_400Regular,
+    Poppins_500Medium,
+    Poppins_600SemiBold
+
+  });
 
   const { loading, thoughts } = useSelector(state => state.thoughts);
   const { authToken } = useSelector(state => state.auth)
@@ -45,23 +53,23 @@ export default function EditThoughtScreen() {
         >
           <View style={GlobalStyles.popUpContainer}>
             <View style={GlobalStyles.modalView}>
-              <Text style={GlobalStyles.modalText}>Are you sure ? You want to delete this thought?</Text>
+              <Text style={[GlobalStyles.modalText,{ fontFamily: "Poppins_400Regular" }]}>Are you sure ? You want to delete this thought?</Text>
               <View style={GlobalStyles.modalBottom}>
                 <Pressable
                   style={[GlobalStyles.button, GlobalStyles.buttonClose]}
                   onPress={() => onDelete(delId, authToken)}>
-                  <Text style={GlobalStyles.textStyle}>Yes</Text>
+                  <Text style={[GlobalStyles.textStyle,{ fontFamily: "Poppins_400Regular" }]}>Yes</Text>
                 </Pressable>
                 <Pressable
                   style={[GlobalStyles.button, GlobalStyles.buttonOpen]}
                   onPress={() => setModalVisible(!modalVisible)}>
-                  <Text style={GlobalStyles.textStyle}>No</Text>
+                  <Text style={[GlobalStyles.textStyle,{ fontFamily: "Poppins_400Regular" }]}>No</Text>
                 </Pressable>
               </View>
             </View>
           </View>
         </Modal>
-        <Text style={GlobalStyles.brandText}>Bring Change To Your Thoughts</Text>
+        <Text style={[GlobalStyles.brandText,{fontWeight:"100",fontFamily:"Poppins_500Medium" }]}>Bring Change To Your Thoughts</Text>
         {loading ? <Loading /> : <EditThoughtList data={thoughts} modalHandler={showModal} />}
       </View>
     </SafeAreaView>

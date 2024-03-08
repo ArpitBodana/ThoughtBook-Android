@@ -20,10 +20,9 @@ export const HomeListStyles = StyleSheet.create({
         flexDirection:"row",
         alignItems:"center",
         justifyContent:"center",
-        gap:5
+        gap:15
     },
     headerText:{
         color:Colors["brand-color"],
-        fontWeight:"bold"
     },
 });

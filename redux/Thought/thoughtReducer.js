@@ -15,7 +15,6 @@ const thoughtReducer = (state = initialThoughtState, action) => {
         case FETCH_THOUGHTS_FAIL: return {
             ...state,
             loading: false,
-            thoughts: [],
             error: action.payload
         }
         case FETCH_THOUGHTS_SUCCESS: return {

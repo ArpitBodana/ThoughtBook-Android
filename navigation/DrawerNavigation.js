@@ -15,6 +15,7 @@ import { useFonts } from "expo-font";
 
 
 
+
 export default function DrawerNavigation() {
     const Drawer = createDrawerNavigator();
     const { isAuthenticated } = useSelector(state => state.auth);
@@ -27,13 +28,12 @@ export default function DrawerNavigation() {
 
     return (
         <Drawer.Navigator screenOptions={{
-            headerShown: false,
-
+            headerShown: true,
             drawerActiveBackgroundColor: Colors['brand-color-opacity'],
             drawerActiveTintColor: Colors['brand-color'],
             drawerInactiveBackgroundColor: Colors['bg-color-primary'],
             drawerLabelStyle: {
-                marginLeft: -20
+                marginLeft: -20,
             }
         }} drawerContent={props => <CustomeDrawer {...props} />} >
             <Drawer.Screen name="ThoughtBook" component={HomeScreen} options={{

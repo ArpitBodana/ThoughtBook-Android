@@ -31,6 +31,7 @@ const CustomeDrawer = (props) => {
         <View style={CustomeDrawerStyles.mainView}>
             <DrawerContentScrollView {...props}>
                 <View style={CustomeDrawerStyles.brandView}>
+                <MaterialIcons name="menu-book" size={30} color={Colors['brand-color']} />
                     <Text style={[CustomeDrawerStyles.brandText,{fontFamily:"Poppins_400Regular"}]}>ThoughtBook</Text>
                     {/* <Text style={[CustomeDrawerStyles.appVersion,{fontFamily:"Poppins_400Regular"}]}>v0.1</Text> */}
                 </View>

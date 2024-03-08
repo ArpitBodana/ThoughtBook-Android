@@ -7,9 +7,10 @@ export const CustomeDrawerStyles = StyleSheet.create({
         backgroundColor:Colors["bg-color-primary"],
     },
     brandView:{
+        flexGrow:1,
         alignItems:"center",
         justifyContent:"center",
-        padding:5,
+        padding:2,
         marginBottom:20,
         borderBottomWidth:0.2,
         borderBottomColor:Colors["brand-color"],
